@@ -1,1 +1,58 @@
-<h1>{{title}}</h1>
+<body>
+    <h1>Search Results for "{{query}}"</h1>
+    <div class="filtering">
+        <form class="filter-form" action="/beaches/search" method="GET">
+            <label for="water-quality">Water Quality:</label>
+            <select id="water-quality" name="water-quality">
+                <option value="">Any</option>
+                <option value="excellent">Excellent</option>
+                <option value="good">Good</option>
+                <option value="fair">Fair</option>
+            </select>
+            <label for="size">Beach Size:</label>
+            <select id="size" name="size">
+                <option value="">Any</option>
+                <option value="small">Small</option>
+                <option value="medium">Medium</option>
+                <option value="large">Large</option>
+            </select>
+            <label for="rating">Minimum Rating:</label>
+            <select id="rating" name="rating">
+                <option value="">Any</option>
+                <option value="5">5 Stars</option>
+                <option value="4">4 Stars</option>
+                <option value="3">3 Stars</option>
+            </select>
+            <label for="surfing">Surfing?</label>
+            <select id="surfing" name="surfing">
+                <option value="">Any</option>
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+            </select>
+            <button type="submit">Apply Filters</button>
+        </form>
+    </div>
+
+    <div class="search-page">
+        <header>
+            <h2>Beaches by {{searchType}} Search</h2>
+        </header>
+        <a href="/" class="home-link">Search for More Beaches</a>
+        {{#if beaches.length}}
+            <ol>
+                {{#each beaches}}
+                    <li>
+                        <p class="searchResult">{{this.strBeach}}</p>
+                        <a href="/beach/{{this.idBeach}}">
+                        {{#if this.strBeachThumb}}
+                            <img class="searchResultImage" alt="{{this.strBeach}}" src="{{this.strBeachThumb}}">
+                        {{else}}
+                            <img class="searchResultImage" alt="No Image Available" src="/public/images/no_image.jpeg">
+                        {{/if}}
+                        </a>
+                    </li>
+                {{/each}}
+            </ol>
+        {{/if}}
+    </div>
+</body>

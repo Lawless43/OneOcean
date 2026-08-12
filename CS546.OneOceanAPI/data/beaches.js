@@ -71,6 +71,36 @@ let exportedMethods = {
         return formatBeach(currentBeach);
     },
 
+    async searchBeachesByName(name) {
+        let nameSanitized = beachUtils.validateBeachName(name);
+        const beachesCollection = await beaches();
+        const res = await beachesCollection.find({ name: { $regex: nameSanitized, $options: 'i' } });
+        if(!res.ok) throw ('Error: '+ res.status);
+        const beaches = await res.json();
+
+        return beaches;
+    },
+
+    async searchBeachesByCounty(county) {
+        let countySanitized = beachUtils.validateBeachCounty(county);
+        const beachesCollection = await beaches();
+        const res = await beachesCollection.find({ county: { $regex: countySanitized, $options: 'i' } });
+        if(!res.ok) throw ('Error: '+ res.status);
+        const beaches = await res.json();
+
+        return beaches;
+    },
+
+    async searchBeachesByCity(city) {
+        let citySanitized = beachUtils.validateBeachCity(city);
+        const beachesCollection = await beaches();
+        const res = await beachesCollection.find({ city: { $regex: citySanitized, $options: 'i' } });
+        if(!res.ok) throw ('Error: '+ res.status);
+        const beaches = await res.json();
+
+        return beaches;
+    },
+
     async removeBeach(id) {
         let idSanatized = generalUtils.checkId(id)
         let id_obj = new ObjectId(id);

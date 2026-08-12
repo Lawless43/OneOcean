@@ -1,1 +1,27 @@
 <h1>One Ocean</h1>
+
+<div class="search-forms">
+    <form action="/searchbeachesbyname" method="POST" class="new-post-form">
+                <label for="name">
+                    Search by Beach Name:
+                </label>
+                <input type="text" name="name" id="name">
+                <input type="submit">
+    </form>
+
+    <form action="/searchbeachesbycounty" method="POST" class="new-post-form">
+                <label for="county">
+                    Search by County:
+                </label>
+                <input type="text" name="county" id="county">
+                <input type="submit">
+    </form>
+
+    <form action="/searchbeachesbycity" method="POST" class="new-post-form">
+                <label for="city">
+                    Search by City:
+                </label>
+                <input type="text" name="city" id="city">
+                <input type="submit">
+    </form>
+</div>
