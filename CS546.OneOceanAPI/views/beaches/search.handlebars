@@ -42,14 +42,30 @@
             <ol>
                 {{#each beaches}}
                     <li>
-                        <p class="searchResult">{{this.strBeach}}</p>
+                        <p class="searchResult">{{this.name}}</p>
                         <a href="/beach/{{this.idBeach}}">
                         {{#if this.strBeachThumb}}
-                            <img class="searchResultImage" alt="{{this.strBeach}}" src="{{this.strBeachThumb}}">
+                            <img class="searchResultImage" alt="{{this.name}}" src="{{this.strBeachThumb}}">
                         {{else}}
                             <img class="searchResultImage" alt="No Image Available" src="/public/images/no_image.jpeg">
                         {{/if}}
                         </a>
+                        <div class="beach-rating">
+                            {{#times this.rating}}
+                                <span class="star">⭐;</span>
+                            {{/times}}
+                        </div>
+                        <div class="water-quality quality-{{this.waterQuality}}">Water Quality: 
+                            {{this.waterQuality}}
+                        </div>
+                        <div class="beach-size">Beach Size: 
+                            {{this.size}}
+                        </div>
+                        <div class="surfing">Surfing: 
+                            {{#if this.surfing}}Yes
+                            {{else}}No
+                            {{/if}}
+                        </div>
                     </li>
                 {{/each}}
             </ol>
