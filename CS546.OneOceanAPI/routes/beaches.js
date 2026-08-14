@@ -1,8 +1,8 @@
 import { Router } from 'express';
-
+import beachData from '../data/beaches.js';
 const router = Router();
 
-router.get('/', (req, res) => {
+router.get('/search', (req, res) => {
   res.render('search', { title: 'Find Beaches' });
 });
 
@@ -16,15 +16,15 @@ router.post('/search', async (req, res) => {
 
   switch (searchType) {
     case 'name':
-      beaches = await this.searchBeachesByName(q);
+      beaches = await searchBeachesByName(q);
       res.render('beaches/search', { title: 'Find Beaches by Name', query: q, searchType: isName, beaches: beaches });
       break;
     case 'county':
-      beaches = await this.searchBeachesByCounty(q);
+      beaches = await searchBeachesByCounty(q);
       res.render('beaches/search', { title: 'Find Beaches by County', query: q, searchType: isCounty, beaches: beaches });
       break;
     case 'city':
-      beaches = await this.searchBeachesByCity(q);
+      beaches = await searchBeachesByCity(q);
       res.render('beaches/search', { title: 'Find Beaches by City', query: q, searchType: isCity, beaches: beaches });
       break;
     default:
