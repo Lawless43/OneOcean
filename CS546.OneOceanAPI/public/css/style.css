@@ -133,3 +133,14 @@ a {
 .quality-fair {
   color: #dc3545;
 }
+
+.search-forms{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.search-form{
+  display: flex;
+  gap: 10px;
+}
