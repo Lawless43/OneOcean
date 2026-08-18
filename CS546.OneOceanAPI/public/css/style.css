@@ -138,9 +138,14 @@ a {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-top: 20px;
 }
 
 .search-form{
   display: flex;
   gap: 10px;
+}
+
+.search-results{
+  margin-top: 20px;
 }

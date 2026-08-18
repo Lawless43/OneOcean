@@ -1,34 +1,6 @@
 <body>
-    <div class="search-forms">
-        <form action="/beaches/search" method="GET" class="new-post-form">
-            <input type="hidden" name="searchType" value="name">
-            <label for="name">
-                Search by Beach Name:
-            </label>
-            <input type="text" name="q" id="name">
-            <button type="submit">Search</button>
-        </form>
-
-        <form action="/beaches/search" method="GET" class="new-post-form">
-            <input type="hidden" name="searchType" value="county">
-            <label for="county">
-                Search by County:
-            </label>
-            <input type="text" name="q" id="county">
-            <button type="submit">Search</button>
-        </form>
-
-        <form action="/beaches/search" method="GET" class="new-post-form">
-            <input type="hidden" name="searchType" value="city">
-            <label for="city">
-                Search by City:
-            </label>
-            <input type="text" name="q" id="city">
-            <button type="submit">Search</button>
-        </form>
-    </div>
-    {{!-- <h1>Search Results for "{{query}}"</h1>
-    <div class="filtering">
+    
+    <div class="filter-section">
         <form class="filter-form" action="/beaches/search" method="GET">
             <label for="water-quality">Water Quality:</label>
             <select id="water-quality" name="water-quality">
@@ -61,11 +33,49 @@
         </form>
     </div>
 
-    <div class="search-page">
-        <header>
-            <h2>Beaches by {{searchType}} Search</h2>
-        </header>
-        <a href="/" class="home-link">Search for More Beaches</a>
+    <div class="search-forms">
+        <form action="/beaches/search" method="GET" class="new-post-form">
+            <input type="hidden" name="searchType" value="name">
+            <label for="name">
+                Search by Beach Name:
+            </label>
+            <input type="text" name="q" id="name">
+            <button type="submit">Search</button>
+        </form>
+
+        <form action="/beaches/search" method="GET" class="new-post-form">
+            <input type="hidden" name="searchType" value="county">
+            <label for="county">
+                Search by County:
+            </label>
+            <input type="text" name="q" id="county">
+            <button type="submit">Search</button>
+        </form>
+
+        <form action="/beaches/search" method="GET" class="new-post-form">
+            <input type="hidden" name="searchType" value="city">
+            <label for="city">
+                Search by City:
+            </label>
+            <input type="text" name="q" id="city">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+    
+    
+
+    
+    <div class="search-results">
+      <header>
+        {{#if query}}
+          <h1>Search Results for "{{query}}"</h1>
+        {{/if}}
+        {{#if searchType}}
+          <h2>Beaches by {{searchType}} Search</h2>
+        {{/if}}
+      </header>
+
+      <a href="../" class="home-link">Return to Home Page</a>
         {{#if beaches.length}}
             <ol>
                 {{#each beaches}}
@@ -98,5 +108,5 @@
                 {{/each}}
             </ol>
         {{/if}}
-    </div> --}}
+    </div>
 </body>
