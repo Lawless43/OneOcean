@@ -7,10 +7,11 @@ import MongoStore from 'connect-mongo';
 import bodyParser from 'body-parser';
 import path from 'path';
 import { fileURLToPath } from 'url';
+
 import configRoutes from './routes/index.js';
+import { exposeUserToViews, loggerMiddleware, globalErrorHandler } from './middleware.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-
 const app = express();
 
 app.use(express.static(path.join(__dirname, 'public')));
@@ -40,6 +41,16 @@ app.engine('handlebars', engine({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 app.set('views', path.join(__dirname, 'views'));
 
+//expose session user to all views (placed AFTER session, BEFORE routes)
+app.use(exposeUserToViews);
+
+//logger Middleware (placed BEFORE routes so every request is logged)
+app.use(loggerMiddleware);
+
+//register all application routes
 configRoutes(app);
+
+//global Error Handler Middleware (MUST be registered LAST after configRoutes)
+app.use(globalErrorHandler);
 
 export default app;
