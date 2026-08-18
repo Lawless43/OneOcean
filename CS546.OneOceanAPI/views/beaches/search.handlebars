@@ -1,1 +1,112 @@
-<h1>{{title}}</h1>
+<body>
+    
+    <div class="filter-section">
+        <form class="filter-form" action="/beaches/search" method="GET">
+            <label for="water-quality">Water Quality:</label>
+            <select id="water-quality" name="water-quality">
+                <option value="">Any</option>
+                <option value="excellent">Excellent</option>
+                <option value="good">Good</option>
+                <option value="fair">Fair</option>
+            </select>
+            <label for="size">Beach Size:</label>
+            <select id="size" name="size">
+                <option value="">Any</option>
+                <option value="small">Small</option>
+                <option value="medium">Medium</option>
+                <option value="large">Large</option>
+            </select>
+            <label for="rating">Minimum Rating:</label>
+            <select id="rating" name="rating">
+                <option value="">Any</option>
+                <option value="5">5 Stars</option>
+                <option value="4">4 Stars</option>
+                <option value="3">3 Stars</option>
+            </select>
+            <label for="surfing">Surfing?</label>
+            <select id="surfing" name="surfing">
+                <option value="">Any</option>
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+            </select>
+            <button type="submit">Apply Filters</button>
+        </form>
+    </div>
+
+    <div class="search-forms">
+        <form action="/beaches/search" method="GET" class="new-post-form">
+            <input type="hidden" name="searchType" value="name">
+            <label for="name">
+                Search by Beach Name:
+            </label>
+            <input type="text" name="q" id="name">
+            <button type="submit">Search</button>
+        </form>
+
+        <form action="/beaches/search" method="GET" class="new-post-form">
+            <input type="hidden" name="searchType" value="county">
+            <label for="county">
+                Search by County:
+            </label>
+            <input type="text" name="q" id="county">
+            <button type="submit">Search</button>
+        </form>
+
+        <form action="/beaches/search" method="GET" class="new-post-form">
+            <input type="hidden" name="searchType" value="city">
+            <label for="city">
+                Search by City:
+            </label>
+            <input type="text" name="q" id="city">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+    
+    
+
+    
+    <div class="search-results">
+      <header>
+        {{#if query}}
+          <h1>Search Results for "{{query}}"</h1>
+        {{/if}}
+        {{#if searchType}}
+          <h2>Beaches by {{searchType}} Search</h2>
+        {{/if}}
+      </header>
+
+      <a href="../" class="home-link">Return to Home Page</a>
+        {{#if beaches.length}}
+            <ol>
+                {{#each beaches}}
+                    <li>
+                        <p class="searchResult">{{this.name}}</p>
+                        <a href="/beach/{{this.idBeach}}">
+                        {{#if this.strBeachThumb}}
+                            <img class="searchResultImage" alt="{{this.name}}" src="{{this.strBeachThumb}}">
+                        {{else}}
+                            <img class="searchResultImage" alt="No Image Available" src="/public/images/no_image.jpeg">
+                        {{/if}}
+                        </a>
+                        <div class="beach-rating">
+                            {{#times this.rating}}
+                                <span class="star">⭐;</span>
+                            {{/times}}
+                        </div>
+                        <div class="water-quality quality-{{this.waterQuality}}">Water Quality: 
+                            {{this.waterQuality}}
+                        </div>
+                        <div class="beach-size">Beach Size: 
+                            {{this.size}}
+                        </div>
+                        <div class="surfing">Surfing: 
+                            {{#if this.surfing}}Yes
+                            {{else}}No
+                            {{/if}}
+                        </div>
+                    </li>
+                {{/each}}
+            </ol>
+        {{/if}}
+    </div>
+</body>

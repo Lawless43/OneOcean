@@ -117,6 +117,38 @@ a {
   text-align: center;
 }
 
+.water-quality {
+  display: inline-block;
+  font-style: bold;
+}
+
+.quality-excellent {
+  color: #28a745;
+}
+
+.quality-good {
+  color: #ffc107;
+}
+
+.quality-fair {
+  color: #dc3545;
+}
+
+.search-forms{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.search-form{
+  display: flex;
+  gap: 10px;
+}
+
+.search-results{
+  margin-top: 20px;
+}
 /* Auth pages (OOD-18) */
 
 .auth-card {
